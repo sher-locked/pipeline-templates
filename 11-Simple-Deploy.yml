@@ -39,9 +39,9 @@ stages:
       spec:
         ports:
         - name: canary
-          port: 8080
+          port: "{{ porttoopen }}"
           protocol: TCP
-          targetPort: 8080
+          targetPort: "{{ porttoopen }}"
         - name: reports
           port: 9090
           protocol: TCP
