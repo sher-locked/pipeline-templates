@@ -20,7 +20,7 @@ INFO[0000] configuration:
   - defaultArtifact:
       kind: default.bitbucket
       name: deploys/deployment-simple.yml
-      reference: https://api.bitbucket.org/1.0/repositories/sher-locked/simple-deploy/raw/master/deploys/deployment-simple.yml
+      reference: "{{ deployurl }}"
       type: bitbucket/file
     id: 33022621-2435-46d0-baa8-799a76311d7a
     matchArtifact:
@@ -32,7 +32,7 @@ INFO[0000] configuration:
   - defaultArtifact:
       kind: default.bitbucket
       name: deploys/service-simple.yml
-      reference: https://api.bitbucket.org/1.0/repositories/sher-locked/simple-deploy/raw/master/deploys/service-simple.yml
+      reference: "{{ serviceurl }}"
       type: bitbucket/file
     id: 38eefab0-78e4-4c9e-b779-4957de38e47b
     matchArtifact:
@@ -51,13 +51,20 @@ INFO[0000] configuration:
     type: git
 id: v2deploy-11DirectDeploy
 metadata:
-  description: This template does not have a description
-  name: 1.1-Direct-Deploy
-  owner: OpsMxUser
+  description: This is a simple deploy.
+  name: direct-deploy
+  owner: anonymous
   scopes:
-  - v2deploy
+  - global
 protect: false
 schema: "1"
+variables:
+- name: deployurl
+  description: The URL at which the YAML of the deployment object for kubernetes is located.
+  defaultValue: https://api.bitbucket.org/1.0/repositories/sher-locked/simple-deploy/raw/master/deploys/deployment-simple.yml
+- name: serviceurl
+  description: The URL at which the YAML of the service object for kubernetes is located.
+  defaultValue: https://api.bitbucket.org/1.0/repositories/sher-locked/simple-deploy/raw/master/deploys/service-simple.yml
 stages:
 - config:
     account: my-k8s-v2-account
